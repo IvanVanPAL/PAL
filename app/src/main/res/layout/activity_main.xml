@@ -6,13 +6,70 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="300dp"
+        android:layout_height="351dp"
+        android:layout_marginBottom="84dp"
+        android:gravity="center_horizontal|center_vertical"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.495"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <Button
+            android:id="@+id/butCreate"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="onOpenClick"
+            android:text="Создать" />
+
+        <Button
+            android:id="@+id/butOpen"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="onOpenClick"
+            android:text="Открыть..." />
+
+        <Button
+            android:id="@+id/butOptions"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:text="Настройки" />
+
+        <Button
+            android:id="@+id/butExit"
+            android:layout_width="144dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="5dp"
+            android:onClick="onExitClick"
+            android:text="Выйти" />
+
+    </LinearLayout>
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Hello World!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:orientation="horizontal"
+        app:layout_constraintGuide_begin="20dp" />
+
+    <TextView
+        android:id="@+id/labelMain"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="casual"
+        android:text="PAL"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.824" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

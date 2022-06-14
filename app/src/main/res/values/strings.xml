@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">PAL</string>
+    <string name="width_main_button">144dp</string>
 </resources>
