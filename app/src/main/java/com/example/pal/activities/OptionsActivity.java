@@ -1,19 +1,19 @@
-package com.example.pal;
+package com.example.pal.activities;
 
 import android.app.Activity;
 import android.os.Bundle;
 import android.view.View;
 
+import com.example.pal.R;
 
-
-public class EditorActivity extends Activity {
+public class OptionsActivity extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.editor_activity);
+        setContentView(R.layout.options_activity);
     }
-    public void onEditorClick(View view){
+    public void onOptionClick(View view){
         finish();
     }
 }
