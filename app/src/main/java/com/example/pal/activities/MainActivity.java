@@ -10,6 +10,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.pal.fragments.CreateBottomDialog;
 import com.example.pal.R;
 import com.example.pal.fragments.CreateDialogFragment;
+import com.example.pal.fragments.OpenBottomDialog;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,9 +24,8 @@ public class MainActivity extends AppCompatActivity {
 
 
     public void onOpenClick(View view){
-        Intent intent = new Intent(MainActivity.this, EditorActivity.class);
-
-        startActivity(intent);
+        final OpenBottomDialog bottomDialog = new OpenBottomDialog();
+        bottomDialog.show(getSupportFragmentManager(), "ModalBottomSheet");
     }
 
     public void onCreateClick(View view){
