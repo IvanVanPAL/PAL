@@ -2,6 +2,7 @@ package com.example.pal.activities;
 
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
 
@@ -12,13 +13,17 @@ import com.example.pal.R;
 import com.example.pal.fragments.CreateDialogFragment;
 import com.example.pal.fragments.OpenBottomDialog;
 
+import java.io.File;
+
 public class MainActivity extends AppCompatActivity {
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //setTheme(R.style.SplashTheme);
         setContentView(R.layout.activity_main);
+
 
     }
 
@@ -35,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void viewDialogCreate(View view){
-        CreateDialogFragment dialog = new CreateDialogFragment();
-        dialog.show(getSupportFragmentManager(), "custom");
-    }
+//    public void viewDialogCreate(View view){
+//        CreateDialogFragment dialog = new CreateDialogFragment();
+//        dialog.show(getSupportFragmentManager(), "custom");
+//    }
 
     public void onOptionsClick(View view){
         Intent intent = new Intent(this, OptionsActivity.class);
@@ -49,6 +54,5 @@ public class MainActivity extends AppCompatActivity {
         finish();
         System.exit(0);
     }
-
 
 }
