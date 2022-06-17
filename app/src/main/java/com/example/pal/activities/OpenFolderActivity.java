@@ -14,34 +14,33 @@ import android.widget.Toast;
 
 import com.example.pal.R;
 
+import net.rdrei.android.dirchooser.DirectoryChooserActivity;
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+
 import java.io.File;
 import java.util.ArrayList;
 
 public class OpenFolderActivity extends Activity {
 
 
+    private static final int REQUEST_DIRECTORY = 1;
+
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        Intent fileIntent = new Intent(Intent.ACTION_GET_CONTENT);
-        fileIntent.setType("*/*");
-        Intent f = Intent.createChooser(fileIntent, "2222");
-        startActivityForResult(f, 10);
+        final Intent chooserIntent = new Intent(this, DirectoryChooserActivity.class);
+
+        final DirectoryChooserConfig config = DirectoryChooserConfig.builder()
+                .newDirectoryName("DirChooserSample")
+                .allowReadOnlyDirectory(true)
+                .allowNewDirectoryNameModification(true)
+                .build();
+
+        chooserIntent.putExtra(DirectoryChooserActivity.EXTRA_CONFIG, config);
+
+// REQUEST_DIRECTORY is a constant integer to identify the request, e.g. 0
+        startActivityForResult(chooserIntent, REQUEST_DIRECTORY);
 
     }
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        switch (requestCode){
-            case 10:
-                if(resultCode == RESULT_OK){
-                    String pathFile = data.getData().getEncodedPath();
-                    System.out.println(pathFile);
-                    Toast toast = Toast.makeText(this, pathFile, Toast.LENGTH_LONG);
-                    toast.show();
-                }
-                break;
-        }
-        finish();
-    }
 }

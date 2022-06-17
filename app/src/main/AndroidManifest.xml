@@ -26,6 +26,7 @@
         <activity android:name=".activities.EditorActivity"/>
         <activity android:name=".activities.OptionsActivity"/>
         <activity android:name=".activities.OpenFolderActivity"/>
+        <activity android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"

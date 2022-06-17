@@ -15,7 +15,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 import net.rdrei.android.dirchooser.DirectoryChooserConfig;
 import net.rdrei.android.dirchooser.DirectoryChooserFragment;
 
-public class OpenBottomDialog extends BottomSheetDialogFragment implements
+public class OpenBottomDialogTest2 extends BottomSheetDialogFragment implements
         DirectoryChooserFragment.OnFragmentInteractionListener{
 
 
@@ -31,6 +31,7 @@ public class OpenBottomDialog extends BottomSheetDialogFragment implements
                 .newDirectoryName("DialogSample")
                 .build();
         mDialog = DirectoryChooserFragment.newInstance(config);
+
         pathFolder = (EditText) view.findViewById(R.id.urlFile);
         folder = (Button) view.findViewById(R.id.buttFolder);
         open = (Button) view.findViewById(R.id.buttModalOpen);

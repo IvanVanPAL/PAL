@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,10 +14,15 @@ import com.example.pal.R;
 import com.example.pal.fragments.CreateDialogFragment;
 import com.example.pal.fragments.OpenBottomDialog;
 
+import net.rdrei.android.dirchooser.DirectoryChooserActivity;
+import net.rdrei.android.dirchooser.DirectoryChooserConfig;
+
 import java.io.File;
 
 public class MainActivity extends AppCompatActivity {
 
+
+    private static final int REQUEST_DIRECTORY = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
         final OpenBottomDialog bottomDialog = new OpenBottomDialog();
         bottomDialog.show(getSupportFragmentManager(), "ModalBottomSheet");
     }
+
 
     public void onCreateClick(View view){
         final CreateBottomDialog bottomDialog = new CreateBottomDialog();
