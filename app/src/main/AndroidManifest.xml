@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.pal">
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"
+        tools:ignore="ScopedStorage" />
 
     <application
         android:allowBackup="true"
@@ -12,7 +13,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.PAL"
-        tools:replace="android:theme">
+        tools:replace="android:theme"
+        android:requestLegacyExternalStorage="true">
 
         <activity
             android:name=".activities.MainActivity"
@@ -25,8 +27,6 @@
         </activity>
         <activity android:name=".activities.EditorActivity"/>
         <activity android:name=".activities.OptionsActivity"/>
-        <activity android:name=".activities.OpenFolderActivity"/>
-        <activity android:name="net.rdrei.android.dirchooser.DirectoryChooserActivity" />
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme"
