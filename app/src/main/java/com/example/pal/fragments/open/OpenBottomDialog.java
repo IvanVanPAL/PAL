@@ -68,11 +68,12 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
         File dir = new File(getPath());
         File[] files = dir.listFiles();
 
-        for(int i = 0; i < files.length; i++){
-            images.add(new ImageList (files[i].getName(), files[i].getAbsolutePath(), 1));
+        if(files.length != 0) {
+            for (int i = 0; i < files.length; i++) {
+                images.add(new ImageList(files[i].getName(), files[i].getAbsolutePath()));
 
+            }
         }
-
     }
 
     private String getPath() {
@@ -80,7 +81,7 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
         String key = this.getString(R.string.pref_save_path_key);
         String path = pref.getString(key, null);
         if (path == null) {
-            path = Environment.getExternalStorageDirectory() + File.separator + "PAL/";
+            path = Environment.getExternalStoragePublicDirectory("Pictures") + File.separator + "PAL/";
             SharedPreferences.Editor editor = pref.edit();
             editor.putString(key, path);
             editor.commit();
