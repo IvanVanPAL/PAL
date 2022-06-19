@@ -4,13 +4,11 @@ public class ImageList {
 
     private String name;
     private String pathImg;
-    private int res;
 
-    public ImageList(String name, String pathImg, int res){
+    public ImageList(String name, String pathImg){
 
         this.name = name;
         this.pathImg = pathImg;
-        this.res = res;
     }
 
     public String getName() {
@@ -27,13 +25,5 @@ public class ImageList {
 
     public void setPathImg(String pathImg) {
         this.pathImg = pathImg;
-    }
-
-    public int getFlagResource() {
-        return this.res;
-    }
-
-    public void setFlagResource(int res) {
-        this.res = res;
     }
 }

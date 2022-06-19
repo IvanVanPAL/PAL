@@ -13,18 +13,16 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Toast;
-
 import androidx.annotation.Nullable;
-
 import com.example.pal.R;
-import com.example.pal.activities.EditorActivity;
+import com.example.pal.activities.editor.EditorActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-
 import java.io.File;
 import java.io.IOException;
 
 public class CreateBottomDialog extends BottomSheetDialogFragment {
-    String typeImg;
+
+    String typeImg = ".jpg";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -34,7 +32,7 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
         Button buttCreate = (Button) view.findViewById(R.id.buttModalOpen);
         EditText name = (EditText) view.findViewById(R.id.urlFile);
         RadioGroup radio = (RadioGroup) view.findViewById(R.id.radioGroupTypeImg);
-        radio.clearCheck();
+        radio.check(R.id.radioJPG);
         radio.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup group, int checkedId) {
@@ -55,21 +53,25 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
             public void onClick(View view){
 
                 File dir = new File(getPath());
-                if (!dir.exists() || !dir.isDirectory())
+                if (!dir.exists() || !dir.isDirectory()) {
                     dir.mkdirs();
+                }
+
 
                 File imageFile = new File(dir.getAbsolutePath(), name.getText().toString() + typeImg);
                 if(!imageFile.exists() || !imageFile.isFile()){
                     try {
                         imageFile.createNewFile();
+                        Toast.makeText(getActivity(),
+                                "Рисунок \"" + imageFile.getAbsolutePath() + "\" создан!!!", Toast.LENGTH_SHORT)
+                                .show();
                     } catch (IOException e) {
                         e.printStackTrace();
+                        Toast.makeText(getActivity(),
+                                e.toString(), Toast.LENGTH_SHORT)
+                                .show();
                     }
                 }
-
-                Toast.makeText(getActivity(),
-                    "Рисунок \"" + imageFile.getAbsolutePath() + "\" создан!!!", Toast.LENGTH_SHORT)
-                    .show();
                 Intent intent = new Intent(getActivity(), EditorActivity.class);
                 startActivity(intent);
                 dismiss();
@@ -83,12 +85,14 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
         String key = this.getString(R.string.pref_save_path_key);
         String path = pref.getString(key, null);
         if (path == null) {
-            path = Environment.getExternalStorageDirectory() + File.separator + "PAL/";
+            path = Environment.getExternalStoragePublicDirectory("Pictures") + File.separator + "PAL/";
             SharedPreferences.Editor editor = pref.edit();
             editor.putString(key, path);
             editor.commit();
         }
         return path;
     }
+
+
 
 }
