@@ -19,6 +19,7 @@
         tools:replace="android:theme" >
         <activity
             android:name=".activities.MainActivity"
+            android:screenOrientation="portrait"
             android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -27,10 +28,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".activities.editor.EditorActivity" />
-        <activity android:name=".activities.OptionsActivity" />
+        <activity android:name=".activities.OptionsActivity"
+            android:screenOrientation="portrait"/>
         <activity
             android:name=".SplashActivity"
             android:exported="true"
+            android:screenOrientation="portrait"
             android:theme="@style/SplashTheme" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

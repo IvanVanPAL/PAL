@@ -9,6 +9,7 @@ import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.FrameLayout;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -24,7 +25,7 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
     FrameLayout frameLayout;
     CanvasView canvasView;
     Paint myPaint;
-    FloatingActionButton toolsCall;
+    //FloatingActionButton toolsCall;
     Toolbar toolbar;
 
 
@@ -33,6 +34,7 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
         super.onCreate(savedInstanceState);
         setContentView(R.layout.editor_activity);
         myPaint = new Paint();
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         frameLayout = findViewById(R.id.editor_canvas);
 
@@ -70,5 +72,9 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
 
 
         return true;
+    }
+
+    public Bitmap getCanvas(){
+        return canvasView.getBitmap();
     }
 }

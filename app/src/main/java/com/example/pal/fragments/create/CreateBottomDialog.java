@@ -3,6 +3,7 @@ package com.example.pal.fragments.create;
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.os.Environment;
 import android.preference.PreferenceManager;
@@ -38,10 +39,10 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radioJPG:
-                        typeImg = ".jpg";
+                        typeImg = "jpg";
                         break;
                     case R.id.radioPNG:
-                        typeImg = ".png";
+                        typeImg = "png";
                         break;
                 }
             }
@@ -58,21 +59,24 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
                 }
 
 
-                File imageFile = new File(dir.getAbsolutePath(), name.getText().toString() + typeImg);
-                if(!imageFile.exists() || !imageFile.isFile()){
-                    try {
-                        imageFile.createNewFile();
-                        Toast.makeText(getActivity(),
-                                "Рисунок \"" + imageFile.getAbsolutePath() + "\" создан!!!", Toast.LENGTH_SHORT)
-                                .show();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                        Toast.makeText(getActivity(),
-                                e.toString(), Toast.LENGTH_SHORT)
-                                .show();
-                    }
-                }
+//                File imageFile = new File(dir.getAbsolutePath(), name.getText().toString() + typeImg);
+//                if(!imageFile.exists() || !imageFile.isFile()){
+//                    try {
+//                        imageFile.createNewFile();
+//                        Toast.makeText(getActivity(),
+//                                "Рисунок \"" + imageFile.getAbsolutePath() + "\" создан!!!", Toast.LENGTH_SHORT)
+//                                .show();
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                        Toast.makeText(getActivity(),
+//                                e.toString(), Toast.LENGTH_SHORT)
+//                                .show();
+//                    }
+//                }
                 Intent intent = new Intent(getActivity(), EditorActivity.class);
+                intent.putExtra("name", name.getText().toString());
+                intent.putExtra("type", typeImg);
+                intent.putExtra("path", getPath());
                 startActivity(intent);
                 dismiss();
 
@@ -92,7 +96,4 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
         }
         return path;
     }
-
-
-
 }
