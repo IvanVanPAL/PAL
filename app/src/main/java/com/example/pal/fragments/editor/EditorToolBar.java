@@ -74,7 +74,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
     }
     private Bitmap.CompressFormat getType(String type){
         switch (type) {
-            case "jpg":
+            case ".JPEG":
                 return Bitmap.CompressFormat.JPEG;
             default:
                 return Bitmap.CompressFormat.PNG;

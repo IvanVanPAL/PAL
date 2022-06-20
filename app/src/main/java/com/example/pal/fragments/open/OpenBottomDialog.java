@@ -1,5 +1,6 @@
 package com.example.pal.fragments.open;
 
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Environment;
@@ -15,16 +16,23 @@ import android.widget.Toast;
 import androidx.annotation.Nullable;
 
 import com.example.pal.R;
+import com.example.pal.activities.editor.EditorActivity;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
 
 import java.io.File;
+import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
 
 
 public class OpenBottomDialog extends BottomSheetDialogFragment {
+
+    private final int FROM_OPEN = 1;
+
     Button open;
     ArrayList<ImageList> images = new ArrayList<ImageList>();
     ListView imageList;
+    String typeFile;
+    ImageList selectedImage;
 
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.bottom_sheet_open, container, false);
@@ -42,8 +50,22 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
             @Override
             public void onItemClick(AdapterView<?> parent, View v, int position, long id) {
 
+                selectedImage = (ImageList)parent.getItemAtPosition(position);
+
+                //selectedImage.getPathImg().
+
+                Intent intent = new Intent(getActivity(), EditorActivity.class);
+                intent.putExtra("name", selectedImage.getName());
+                intent.putExtra("type", selectedImage.getTypeImg());
+                intent.putExtra("path", selectedImage.getPathImg());
+                intent.putExtra("from", String.valueOf(FROM_OPEN));
+                startActivity(intent);
+                dismiss();
+
+
+
                 // получаем выбранный пункт
-                ImageList selectedImage = (ImageList)parent.getItemAtPosition(position);
+                selectedImage = (ImageList)parent.getItemAtPosition(position);
                 imageList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                 Toast.makeText(getActivity(), "Был выбран пункт " + selectedImage.getName(),
                         Toast.LENGTH_SHORT).show();
@@ -54,8 +76,7 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
         open.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Toast toast = Toast.makeText(getActivity(), "test", Toast.LENGTH_LONG);
-                toast.show();
+                dismiss();
             }
         });
 
@@ -70,7 +91,8 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
 
         if(files.length != 0) {
             for (int i = 0; i < files.length; i++) {
-                images.add(new ImageList(files[i].getName(), files[i].getAbsolutePath()));
+                typeFile = files[i].getAbsolutePath().substring(files[i].getAbsolutePath().lastIndexOf("."));
+                images.add(new ImageList(files[i].getName(), files[i].getAbsolutePath(), typeFile));
 
             }
         }

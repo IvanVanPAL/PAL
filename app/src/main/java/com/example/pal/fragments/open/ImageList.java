@@ -4,11 +4,13 @@ public class ImageList {
 
     private String name;
     private String pathImg;
+    private String typeImg;
 
-    public ImageList(String name, String pathImg){
+    public ImageList(String name, String pathImg, String typeImg){
 
         this.name = name;
         this.pathImg = pathImg;
+        this.typeImg = typeImg;
     }
 
     public String getName() {
@@ -25,5 +27,13 @@ public class ImageList {
 
     public void setPathImg(String pathImg) {
         this.pathImg = pathImg;
+    }
+
+    public String getTypeImg() {
+        return typeImg;
+    }
+
+    public void setTypeImg(String typeImg) {
+        this.typeImg = typeImg;
     }
 }

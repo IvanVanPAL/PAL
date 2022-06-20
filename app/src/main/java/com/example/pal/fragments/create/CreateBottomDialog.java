@@ -23,7 +23,10 @@ import java.io.IOException;
 
 public class CreateBottomDialog extends BottomSheetDialogFragment {
 
-    String typeImg = ".jpg";
+    private final int FROM_CREATE = 0;
+
+
+    String typeImg = ".JPEG";
 
     @SuppressLint("ClickableViewAccessibility")
     @Override
@@ -39,10 +42,10 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 switch (checkedId) {
                     case R.id.radioJPG:
-                        typeImg = "jpg";
+                        typeImg = ".JPEG";
                         break;
                     case R.id.radioPNG:
-                        typeImg = "png";
+                        typeImg = ".PNG";
                         break;
                 }
             }
@@ -77,6 +80,7 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
                 intent.putExtra("name", name.getText().toString());
                 intent.putExtra("type", typeImg);
                 intent.putExtra("path", getPath());
+                intent.putExtra("from", String.valueOf(FROM_CREATE));
                 startActivity(intent);
                 dismiss();
 
