@@ -55,12 +55,9 @@ public class EditorToolBar extends BottomSheetDialogFragment {
             nameImage = arguments.get("name").toString();
             typeImage = arguments.get("type").toString();
             pathImage = arguments.get("path").toString();
-
         }
 
         imageSaver = new ImageSaver(nameImage, getType(typeImage), quality, pathImage);
-
-
 
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
