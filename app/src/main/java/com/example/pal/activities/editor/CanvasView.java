@@ -29,11 +29,15 @@ public class CanvasView extends View {
         return new Canvas(image);
     }
 
+    public void setCanvas(){
+
+    }
+
     @Override
     protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
         super.onLayout(changed, left, top, right, bottom);
 
-        image = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.RGB_565);
+        image = Bitmap.createBitmap(getWidth(), getHeight(), Bitmap.Config.ARGB_8888);
         clear();
     }
 

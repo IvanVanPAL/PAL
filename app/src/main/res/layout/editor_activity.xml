@@ -9,10 +9,10 @@
         android:id="@+id/editor_canvas"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="#ECECEC"
+        android:foregroundGravity="center"
         tools:layout_editor_absoluteX="1dp"
-        tools:layout_editor_absoluteY="1dp">
-
-    </FrameLayout>
+        tools:layout_editor_absoluteY="1dp"/>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
         android:id="@+id/floatingActionButton"

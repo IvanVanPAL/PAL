@@ -13,12 +13,42 @@
 
     android:background="@color/white"
 
+    android:gravity="center_horizontal"
     android:orientation="vertical"
     android:padding="15dp">
 
-    <Button
-        android:id="@+id/saveButt"
+    <LinearLayout
         android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
+
+        <Button
+            android:id="@+id/saveButt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Save" />
+
+        <Button
+            android:id="@+id/drawFreeButt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_marginRight="5dp"
+            android:layout_weight="1"
+            android:text="Draw Free" />
+
+        <Button
+            android:id="@+id/drawHeartButt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="Draw Heart" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/colorButt"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save" />
+        android:text="Color" />
+
 </LinearLayout>

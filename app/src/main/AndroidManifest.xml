@@ -27,7 +27,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".activities.editor.EditorActivity" />
+        <activity android:name=".activities.editor.EditorActivity"
+            android:screenOrientation="portrait"/>
         <activity android:name=".activities.OptionsActivity"
             android:screenOrientation="portrait"/>
         <activity

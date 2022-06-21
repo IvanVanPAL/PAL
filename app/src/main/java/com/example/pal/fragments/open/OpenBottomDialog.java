@@ -28,7 +28,6 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
 
     private final int FROM_OPEN = 1;
 
-    Button open;
     ArrayList<ImageList> images = new ArrayList<ImageList>();
     ListView imageList;
     String typeFile;
@@ -38,7 +37,7 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
         View view = inflater.inflate(R.layout.bottom_sheet_open, container, false);
 
         setInitialData();
-        open = (Button) view.findViewById(R.id.buttModalOpen);
+
 
         imageList = (ListView) view.findViewById(R.id.imageList);
 
@@ -59,28 +58,16 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
                 intent.putExtra("type", selectedImage.getTypeImg());
                 intent.putExtra("path", selectedImage.getPathImg());
                 intent.putExtra("from", String.valueOf(FROM_OPEN));
-                startActivity(intent);
-                dismiss();
 
 
 
-                // получаем выбранный пункт
-                selectedImage = (ImageList)parent.getItemAtPosition(position);
-                imageList.setChoiceMode(ListView.CHOICE_MODE_SINGLE);
                 Toast.makeText(getActivity(), "Был выбран пункт " + selectedImage.getName(),
                         Toast.LENGTH_SHORT).show();
+                startActivity(intent);
+                dismiss();
             }
         };
         imageList.setOnItemClickListener(itemListener);
-
-        open.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                dismiss();
-            }
-        });
-
-
 
         return view;
     }
@@ -95,7 +82,7 @@ public class OpenBottomDialog extends BottomSheetDialogFragment {
                 images.add(new ImageList(files[i].getName(), files[i].getAbsolutePath(), typeFile));
 
             }
-        }
+        }else Toast.makeText(getActivity(), "Ничего нет :(", Toast.LENGTH_LONG).show();
     }
 
     private String getPath() {

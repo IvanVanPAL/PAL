@@ -58,7 +58,6 @@ public class ImageSaver {
         FileOutputStream fos = new FileOutputStream(image);
         bitmap.compress(type, quality, fos);
         fos.close();
-
      return image.getPath();
     }
 
