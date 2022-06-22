@@ -21,8 +21,6 @@ public class ImageListAdapter extends ArrayAdapter<ImageList> {
     private int layout;
     private List<ImageList> images;
 
-
-
     public ImageListAdapter(Context context, int resource, List<ImageList> images) {
             super(context, resource, images);
             this.images = images;
@@ -30,9 +28,8 @@ public class ImageListAdapter extends ArrayAdapter<ImageList> {
             this.inflater = LayoutInflater.from(context);
     }
 
-
     public View getView(int position, View convertView, ViewGroup parent) {
-
+        View view=inflater.inflate(this.layout, parent, false);
         ViewHolder viewHolder;
         if(convertView==null){
             convertView = inflater.inflate(this.layout, parent, false);
@@ -43,12 +40,12 @@ public class ImageListAdapter extends ArrayAdapter<ImageList> {
             viewHolder = (ViewHolder) convertView.getTag();
         }
 
-        View view=inflater.inflate(this.layout, parent, false);
+
 
         ImageList  img = images.get(position);
 
         viewHolder.imageView.setImageDrawable(Drawable.createFromPath(img.getPathImg()));
-        viewHolder.nameView.setText(img.getName());
+        viewHolder.nameView.setText(img.getName() + img.getTypeImg());
 
         viewHolder.delButt.setOnClickListener(new View.OnClickListener() {
             @Override

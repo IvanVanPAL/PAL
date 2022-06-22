@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="background">
+        <item>back1</item>
+        <item>back2</item>
+        <item>back3</item>
+        <item>back4</item>
+        <item>back5</item>
+        <item>back6</item>
+        <item>back7</item>
+        <item>back8</item>
+    </string-array>
+</resources>

@@ -4,7 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#1AFFFFFF"
     tools:context=".activities.MainActivity">
+
+    <ImageView
+        android:id="@+id/imageBack"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:alpha="0.5"
+        android:background="#00FFFFFF"
+        android:scaleType="centerCrop"
+        app:srcCompat="@drawable/back2" />
 
     <LinearLayout
         android:id="@+id/linearLayout"
@@ -66,14 +76,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.824" />
 
-<!--    <include layout="@layout/bottom_frag"/>-->
+    <!--    <include layout="@layout/bottom_frag"/>-->
 
-<!--    <FrameLayout-->
-<!--        android:id="@+id/containerBottomSheet"-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="match_parent"-->
-<!--        app:behavior_hideable="true"-->
-<!--        app:behavior_peekHeight="100dp"-->
-<!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />-->
+    <!--    <FrameLayout-->
+    <!--        android:id="@+id/containerBottomSheet"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:behavior_hideable="true"-->
+    <!--        app:behavior_peekHeight="100dp"-->
+    <!--        app:layout_behavior="com.google.android.material.bottomsheet.BottomSheetBehavior" />-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

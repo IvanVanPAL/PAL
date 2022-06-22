@@ -2,6 +2,7 @@ package com.example.pal.fragments.editor;
 
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.graphics.Rect;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,6 +12,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.graphics.ColorUtils;
 
 import com.example.pal.R;
 import com.example.pal.activities.editor.EditorActivity;
@@ -22,6 +24,9 @@ import com.jaredrummler.android.colorpicker.ColorShape;
 import java.io.IOException;
 
 public class EditorToolBar extends BottomSheetDialogFragment {
+
+    private final int MODE_DRAW_FREE = 21;
+    private final int MODE_DRAW_HEART = 22;
 
     ImageSaver imageSaver;
     EditorActivity editorActivity;
@@ -47,9 +52,52 @@ public class EditorToolBar extends BottomSheetDialogFragment {
         drawFreeImage = (Button) view.findViewById(R.id.drawFreeButt);
         colorPicker = (Button) view.findViewById(R.id.colorButt);
 
+
+
         editorActivity = (EditorActivity) getActivity();
 
-        EditorActivity activity = (EditorActivity) getActivity();
+
+        switch (editorActivity.getModeStatus()){
+            case MODE_DRAW_FREE:
+                if(editorActivity.getColorPaint() == Color.BLACK){
+                    drawFreeImage.setTextColor(Color.WHITE);
+                    drawFreeImage.setBackgroundColor(Color.BLACK);
+                }else if(editorActivity.getColorPaint() == Color.WHITE){
+                    drawFreeImage.setTextColor(Color.BLACK);
+                    drawFreeImage.setBackgroundColor(Color.WHITE);
+                }else {
+                    drawFreeImage.setTextColor(Color.BLACK);
+                    drawFreeImage.setBackgroundColor(editorActivity.getColorPaint());
+                }
+                drawHeartImage.setTextColor(Color.BLACK);
+                drawHeartImage.setBackgroundColor(Color.WHITE);
+                break;
+            case MODE_DRAW_HEART:
+                if(editorActivity.getColorPaint() == Color.BLACK){
+                    drawHeartImage.setTextColor(Color.WHITE);
+                    drawHeartImage.setBackgroundColor(Color.BLACK);
+                }else if(editorActivity.getColorPaint() == Color.WHITE){
+                    drawHeartImage.setTextColor(Color.BLACK);
+                    drawHeartImage.setBackgroundColor(Color.WHITE);
+                }else {
+                    drawHeartImage.setTextColor(Color.BLACK);
+                    drawHeartImage.setBackgroundColor(editorActivity.getColorPaint());
+                }
+                drawFreeImage.setTextColor(Color.BLACK);
+                drawFreeImage.setBackgroundColor(Color.WHITE);
+                break;
+
+        }
+        if(editorActivity.getColorPaint() == Color.BLACK){
+            colorPicker.setTextColor(Color.WHITE);
+            colorPicker.setBackgroundColor(Color.BLACK);
+        }else if(editorActivity.getColorPaint() == Color.WHITE){
+            colorPicker.setTextColor(Color.BLACK);
+            colorPicker.setBackgroundColor(Color.WHITE);
+        }else {
+            colorPicker.setTextColor(Color.BLACK);
+            colorPicker.setBackgroundColor(editorActivity.getColorPaint());
+        }
 
         if(arguments != null){
             nameImage = arguments.get("name").toString();
@@ -67,9 +115,9 @@ public class EditorToolBar extends BottomSheetDialogFragment {
                     imageSaver.setType(getType(typeImage));
                     imageSaver.setPath(pathImage);
                     imageSaver.setQuality(quality);
-                    String path = imageSaver.saveImage(activity.getCanvas());
+                    String path = imageSaver.saveImage(editorActivity.getCanvas());
 
-                    Toast.makeText(activity, "Рисунок " + path + " сохранен!", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(editorActivity, "Рисунок " + path + " сохранен!", Toast.LENGTH_SHORT).show();
 
                 }catch (IOException e){
                     Toast.makeText(getActivity(), e.toString(), Toast.LENGTH_SHORT).show();
@@ -82,7 +130,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
         drawHeartImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editorActivity.setMode(editorActivity.MODE_DRAW_HEART);
+                editorActivity.setMode(MODE_DRAW_HEART);
                 dismiss();
 
             }
@@ -91,7 +139,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
         drawFreeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                editorActivity.setMode(editorActivity.MODE_DRAW_FREE);
+                editorActivity.setMode(MODE_DRAW_FREE);
                 dismiss();
             }
         });
@@ -100,6 +148,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
             @Override
             public void onClick(View view) {
                 createColorPickerDialog(0);
+                dismiss();
             }
         });
 
