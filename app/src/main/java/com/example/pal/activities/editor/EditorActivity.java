@@ -143,7 +143,8 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
 
             //рисование с помощью ресурса Drawable
             case MODE_DRAW_HEART:
-                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.heart).copy(Bitmap.Config.ARGB_8888, true);
+                Bitmap bitmap = BitmapFactory.decodeResource(getResources(), R.drawable.heart).copy(Bitmap.Config.ARGB_8888,
+                        true);
 
                 int eX = (int) motionEvent.getX();
                 int eY = (int) motionEvent.getY();

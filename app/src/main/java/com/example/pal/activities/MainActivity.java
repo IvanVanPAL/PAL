@@ -22,10 +22,8 @@ import com.example.pal.R;
 import com.example.pal.fragments.open.OpenBottomDialog;
 
 public class MainActivity extends AppCompatActivity {
-
     //код проверки прав доступа, значение может быть каким угодно
     private static final int STORAGE_PERMISSION_CODE = 101;
-
     //Создание конфига приложения
     SharedPreferences pref;
     SharedPreferences.Editor editor;
@@ -57,7 +55,6 @@ public class MainActivity extends AppCompatActivity {
         imageView.setImageResource(backImage);
 
     }
-
     // обработка кнопки "Открыть"
     public void onOpenClick(View view){
         checkPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE, STORAGE_PERMISSION_CODE);
@@ -123,9 +120,4 @@ public class MainActivity extends AppCompatActivity {
             }
         }
     }
-
-
-
-
-
 }
