@@ -45,9 +45,6 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
     public final int YES_CHANGES = 31;
     public final int NO_CHANGES = 32;
 
-    private final int FROM_OPEN = 1;
-    private final int FROM_CREATE = 0;
-
     FrameLayout frameLayout;
     CanvasView canvasView;
 

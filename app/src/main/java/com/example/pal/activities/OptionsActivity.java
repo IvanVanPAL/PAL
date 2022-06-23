@@ -50,9 +50,6 @@ public class OptionsActivity extends Activity {
 
     }
     //обработка кнопки "Назад"
-    public void onOptionClick(View view){
-        finish();
-    }
 
     public void onImageClick(View view){
         switch (view.getId()){

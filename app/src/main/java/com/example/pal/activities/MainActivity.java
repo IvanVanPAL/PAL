@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
     //код проверки прав доступа, значение может быть каким угодно
     private static final int STORAGE_PERMISSION_CODE = 101;
 
+    //Создание конфига приложения
     SharedPreferences pref;
     SharedPreferences.Editor editor;
     String pref_key_back;
@@ -38,16 +39,20 @@ public class MainActivity extends AppCompatActivity {
         //установка макета для активности, на котором находятся
         // элементы управления
         setContentView(R.layout.activity_main);
+
+        //взятие настроек из конфига
         pref = PreferenceManager.getDefaultSharedPreferences(MainActivity.this);
         pref_key_back = this.getString(R.string.pref_save_back);
 
         backImage = pref.getInt(pref_key_back, 0);
 
+        //если конфига еще не было, то его надо создать
         if (backImage == 0) {
             editor = pref.edit();
             editor.putInt(pref_key_back, R.drawable.back2);
             editor.commit();
         }
+
         ImageView imageView = (ImageView) findViewById(R.id.imageBack);
         imageView.setImageResource(backImage);
 
