@@ -95,9 +95,11 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
         colorPaint = pref.getInt(pref_key_color, 0);
 
 
+
         Bundle arguments = getIntent().getExtras();
 
         if(arguments != null){
+            //из какого фрагмента был сделан переход
             fromActivity =  arguments.getInt("from");
             pathFile = arguments.get("path").toString() + arguments.get("name").toString() + arguments.get("type").toString();
         }
@@ -107,6 +109,8 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
         frameLayout = findViewById(R.id.editor_canvas);
 
         canvasView = new CanvasView( this);
+
+        //настройка холста
         canvasView.setFrom(fromActivity);
         canvasView.setImageFile(pathFile);
         //установка слушателя холста
@@ -196,6 +200,7 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
         return true;
     }
 
+    //возвращает холст
     public Bitmap getCanvas(){
         return canvasView.getBitmap();
     }
@@ -209,10 +214,11 @@ public class EditorActivity extends AppCompatActivity implements View.OnTouchLis
     public void setSaveChange(int s){
         saveChange = s;
     }
+    //получение цвета
     public int getColorPaint(){
         return colorPaint;
     }
-
+    //получение режима рисования
     public int getModeStatus(){
         return mode;
     }

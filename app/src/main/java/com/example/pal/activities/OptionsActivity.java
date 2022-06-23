@@ -24,6 +24,7 @@ public class OptionsActivity extends Activity {
     SharedPreferences.Editor editor;
     String pref_key_back;
 
+    //массив из id фонов
     int[] backgrounds = new int[]{
             R.drawable.back1,
             R.drawable.back2,
@@ -52,6 +53,7 @@ public class OptionsActivity extends Activity {
     //обработка кнопки "Назад"
 
     public void onImageClick(View view){
+        //в конфиг помещается id фона , который соответсвует картинке
         switch (view.getId()){
             case R.id.img1:
                 savePref(backgrounds[0]);
@@ -89,6 +91,7 @@ public class OptionsActivity extends Activity {
         }
     }
 
+    //метод сохранения изменений конфига
     private void savePref(int id){
 
         SharedPreferences.Editor editor = pref.edit();

@@ -110,11 +110,6 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
                     Toast.makeText(getActivity(), "Введены запрещенные символы!", Toast.LENGTH_SHORT).show();
 
                 }
-
-
-
-
-
         }});
 
         return view;
@@ -148,9 +143,12 @@ public class CreateBottomDialog extends BottomSheetDialogFragment {
         editor.commit();
     }
 
+    //Проверка имени на недопустимые символы
     public boolean checkName(String name){
         char[] badChar = new char[]{'/', '\'', '\"', '\n', ',', '.', '^', ':', ';', '?', '!', '(', ')'};
         int count = 11;
+
+        if(name.length() == 0){ return false;}
 
         for (int i = 0; i < name.length(); i++) {
             for(int j : badChar){

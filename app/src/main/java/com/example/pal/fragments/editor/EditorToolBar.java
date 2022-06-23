@@ -25,6 +25,7 @@ import java.io.IOException;
 
 public class EditorToolBar extends BottomSheetDialogFragment {
 
+    //режимы рисования
     private final int MODE_DRAW_FREE = 21;
     private final int MODE_DRAW_HEART = 22;
 
@@ -47,17 +48,17 @@ public class EditorToolBar extends BottomSheetDialogFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.tools_menu_sheet, container, false);
         Bundle arguments = getActivity().getIntent().getExtras();
+
         saveImage = (Button) view.findViewById(R.id.saveButt);
         drawHeartImage = (Button) view.findViewById(R.id.drawHeartButt);
         drawFreeImage = (Button) view.findViewById(R.id.drawFreeButt);
         colorPicker = (Button) view.findViewById(R.id.colorButt);
 
-
-
         editorActivity = (EditorActivity) getActivity();
 
-
+        //здесь происходит смена выделения кнопки инструмента рисования
         switch (editorActivity.getModeStatus()){
+            //выбрана свободная кисть
             case MODE_DRAW_FREE:
                 if(editorActivity.getColorPaint() == Color.BLACK){
                     drawFreeImage.setTextColor(Color.WHITE);
@@ -72,6 +73,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
                 drawHeartImage.setTextColor(Color.BLACK);
                 drawHeartImage.setBackgroundColor(Color.WHITE);
                 break;
+                //выбраны сердца
             case MODE_DRAW_HEART:
                 if(editorActivity.getColorPaint() == Color.BLACK){
                     drawHeartImage.setTextColor(Color.WHITE);
@@ -88,6 +90,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
                 break;
 
         }
+        //изменение кнопки выбора цвета
         if(editorActivity.getColorPaint() == Color.BLACK){
             colorPicker.setTextColor(Color.WHITE);
             colorPicker.setBackgroundColor(Color.BLACK);
@@ -107,6 +110,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
 
         imageSaver = new ImageSaver(nameImage, getType(typeImage), quality, pathImage);
 
+        //сохранение изображения
         saveImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -156,7 +160,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
     }
 
 
-
+    //вызов диалогового окна выбора цвета из скаченной библиотеки ColorPickerDialog
     private void createColorPickerDialog(int id) {
         ColorPickerDialog.newBuilder()
                 .setColor(Color.RED)
@@ -168,6 +172,7 @@ public class EditorToolBar extends BottomSheetDialogFragment {
                 .show(getActivity());
     }
 
+    //полчуение типа изображения
     public Bitmap.CompressFormat getType(String type){
         switch (type) {
             case ".JPEG":
